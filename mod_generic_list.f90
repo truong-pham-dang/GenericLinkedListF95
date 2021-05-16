@@ -26,7 +26,7 @@
 ! nullify(current%data) instead of nullify(self%data).  Thanks to
 ! Michael Quinlan.
 
-module generic_list
+module mod_generic_list
   implicit none
 
   private
@@ -80,7 +80,7 @@ contains
        nullify(current)
        current => next
     end do
-    
+
   end subroutine list_free
 
   ! Insert a list node after SELF containing DATA (optional)
@@ -100,7 +100,7 @@ contains
 
     next%next => self%next
     self%next => next
-    
+
   end subroutine list_insert
 
   ! Store the encoded DATA in list node SELF
@@ -145,12 +145,13 @@ contains
 			prev%next => current%next
             deallocate( current )
             nullify( current )
+			exit
         endif
-            
+
 		prev    => current
 		current => current%next
     enddo
 
   end subroutine list_remove_node
 
- end module generic_list
+ end module mod_generic_list

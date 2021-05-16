@@ -1,4 +1,4 @@
-!  GenericLinkedList.f90 
+!  GenericLinkedList.f90
 !
 !  FUNCTIONS:
 !	GenericLinkedList      - Entry point of console application.
@@ -16,19 +16,20 @@
 
 	program GenericLinkedList
 
-	use generic_list
-    use data 
+	use mod_generic_list
+    use mod_data
 
     implicit none
 
     type(list_node_t), pointer :: list => null()
 	type(list_node_t), pointer :: list_tranverser => null()
+	type(list_node_t), pointer :: elem => null()
     type(data_int_ptr)         :: ptr
-      
+
     integer :: i, k
 
 
-      
+
     do i = 1, 5
 		ptr = data_int_ptr_constructor(i);
 
@@ -37,8 +38,8 @@
         else
             call list_insert(list,transfer(ptr,list_data))
         endif
-    enddo    
-      
+    enddo
+
 
     print*,'********************************************'
     print*,'Linked list:'
@@ -58,7 +59,10 @@
         ptr = transfer(list_get(list_tranverser), ptr)
         k = ptr%p%n
 
-        if (k == 3) call list_remove_node(list_tranverser)
+        if (k == 3) then
+			elem => list_tranverser
+			call list_remove_node(list_tranverser)
+		endif
 
         list_tranverser => list_next(list_tranverser)
     end do
@@ -72,7 +76,7 @@
         k = ptr%p%n
 
         print*, k
-        
+
         list_tranverser => list_next(list_tranverser)
     end do
 

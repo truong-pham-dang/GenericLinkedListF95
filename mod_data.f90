@@ -1,4 +1,4 @@
-module data
+module mod_data
   implicit none
 
   private
@@ -34,4 +34,4 @@ module data
       endif
   end function
 
-end module data
+end module mod_data
