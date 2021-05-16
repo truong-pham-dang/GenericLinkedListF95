@@ -1,10 +1,12 @@
 module mod_data
+  use mod_generic_list, only: list_get, list_next, list_node_t
   implicit none
 
   private
   public :: data_int_t
   public :: data_int_ptr
   public :: data_int_ptr_constructor
+  public :: data_int_ptr_print
 
   ! Data is stored in data_int_t
   type :: data_int_t
@@ -20,6 +22,10 @@ module mod_data
       module procedure data_int_ptr_initialize
   end interface data_int_ptr_constructor
 
+  interface data_int_ptr_print
+    module procedure data_int_ptr_print_list
+  end interface data_int_ptr_print
+
   contains
 
   ! Implement the constructor
@@ -33,5 +39,18 @@ module mod_data
           data_int_ptr_initialize%p%n = val
       endif
   end function
+
+  ! helper method print
+  subroutine data_int_ptr_print_list(list)
+    implicit none
+    type(list_node_t), pointer :: list
+    type(data_int_ptr)         :: ptr
+
+    do while (associated(list))
+		ptr = transfer(list_get(list), ptr)
+        print*, ptr%p%n
+        list => list_next(list)
+    end do
+  end subroutine
 
 end module mod_data

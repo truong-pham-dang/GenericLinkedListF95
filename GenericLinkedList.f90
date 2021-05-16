@@ -43,14 +43,7 @@
 
     print*,'********************************************'
     print*,'Linked list:'
-    do while (associated(list))
-		ptr = transfer(list_get(list), ptr)
-        k = ptr%p%n
-
-        print*, k
-
-        list => list_next(list)
-    end do
+    call data_int_ptr_print(list)
 
     ! Remove node which has data = 3 in the list
     list_tranverser => list
@@ -70,15 +63,7 @@
     ! Print the list again
     print*,'********************************************'
     print*,'Linked list after remove node has value = 3:'
-    list_tranverser => list
-    do while (associated(list_tranverser))
-        ptr = transfer(list_get(list_tranverser), ptr)
-        k = ptr%p%n
-
-        print*, k
-
-        list_tranverser => list_next(list_tranverser)
-    end do
+    call data_int_ptr_print(list)
 
     ! Free the list
     call list_free(list)
