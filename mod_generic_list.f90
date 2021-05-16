@@ -33,6 +33,7 @@ module generic_list
   public :: list_node_t, list_data
   public :: list_init, list_free
   public :: list_insert, list_put, list_get, list_next
+  public :: lisT_remove_node
 
   ! A public variable used as a MOLD for transfer()
   integer, dimension(:), allocatable :: list_data
@@ -144,7 +145,6 @@ contains
 			prev%next => current%next
             deallocate( current )
             nullify( current )
-            exit
         endif
             
 		prev    => current
