@@ -33,7 +33,7 @@ module mod_generic_list
   public :: list_node_t, list_data
   public :: list_init, list_free
   public :: list_insert, list_put, list_get, list_next
-  public :: lisT_remove_node
+  public :: list_remove_node
 
   ! A public variable used as a MOLD for transfer()
   integer, dimension(:), allocatable :: list_data
@@ -131,26 +131,29 @@ contains
 
   ! Remove a node
   subroutine list_remove_node( list )
-	type(list_node_t), pointer  :: list
+	type(list_node_t), pointer        :: list
 
-    type(list_node_t), pointer  :: current => null()
-    type(list_node_t), pointer  :: prev    => null()
+    type(list_node_t), pointer        :: current => null()
+    type(list_node_t), pointer        :: prev => null()
 
+	current => list
 
-    prev    => list
-    current => prev%next
+	prev => current
+	current => current%next
 
-    do while ( associated(current) )
-		if ( associated(current) ) then
-			prev%next => current%next
-            deallocate( current )
-            nullify( current )
-			exit
-        endif
+	if (.not. associated(current)) print*, 'Cannot find node to remove !!!'
 
-		prev    => current
-		current => current%next
-    enddo
+	if (associated(prev)) then
+		prev%next => current%next
+		prev%data = current%data
+
+		if (associated(current%data)) then
+			deallocate(current%data)
+          nullify(current%data)
+		endif
+		deallocate(current)
+		nullify(current)
+	endif
 
   end subroutine list_remove_node
 

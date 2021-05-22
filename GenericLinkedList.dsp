@@ -68,8 +68,8 @@ LINK32=link.exe
 # PROP Target_Dir ""
 # ADD BASE F90 /check:bounds /compile_only /dbglibs /debug:full /nologo /traceback /warn:argument_checking /warn:nofileopt
 # ADD F90 /check:bounds /compile_only /dbglibs /debug:full /nologo /traceback /warn:argument_checking /warn:nofileopt
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ  /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ  /c
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -91,14 +91,21 @@ LINK32=link.exe
 # Begin Source File
 
 SOURCE=.\GenericLinkedList.f90
-# End Source File
-# Begin Source File
-
-SOURCE=.\mod_generic_list.f90
+NODEP_F90_GENER=\
+	".\Debug\mod_data.mod"\
+	".\Debug\mod_generic_list.mod"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\mod_data.f90
+NODEP_F90_MOD_D=\
+	".\Debug\mod_generic_list.mod"\
+	
+# End Source File
+# Begin Source File
+
+SOURCE=.\mod_generic_list.f90
 # End Source File
 # End Group
 # Begin Group "Header Files"
