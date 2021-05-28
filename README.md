@@ -13,4 +13,4 @@ Reference:
 
 TO-DO list:
 
-- a bug in subroutine list_remove_node
+- a bug in subroutine list_remove_node. To overcome this, I prepared a simplify version of this repo, which is a trivial linked list as usual in many textbooks https://github.com/truongd8593/SimpleLinkedListF95 . Still an open question in this repo, although removing a node in linked list is relatively easy in the simplify version.
