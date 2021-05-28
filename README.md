@@ -9,8 +9,14 @@ The code has been tested in following IDEs:
 
 Reference:
 
-[1] Jason R Blevins: A generic linked list implementation in Fortran 95, April 2009 ACM SIGPLAN Fortran Forum 28(3)
+[1] Jason R Blevins: A generic linked list implementation in Fortran 95, April 2009 ACM SIGPLAN Fortran Forum 28(3).
+
+[2] Tran Hanh Nhi, Duong Anh Duc - Introduction to data structures and algorithms (textbook in HCMUS's library, 2003).
+
+BUG FIXES:
+
+- A bug in subroutine list_remove_node
 
 TO-DO list:
 
-- a bug in subroutine list_remove_node. To overcome this, I prepared a simplify version of this repo, which is a trivial linked list as usual in many textbooks https://github.com/truongd8593/SimpleLinkedListF95 . Still an open question in this repo, although removing a node in linked list is relatively easy in the simplify version.
+- Add more utilities for generic linked list.
