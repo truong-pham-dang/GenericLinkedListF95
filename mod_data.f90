@@ -58,19 +58,26 @@ module mod_data
   subroutine data_int_ptr_remove_node(list, k)
     implicit none
     type(list_node_t), pointer :: list
+    type(list_node_t), pointer :: p, q
     type(data_int_ptr)         :: ptr
 	integer, intent(in)        :: k
 
-    do while (associated(list))
-		ptr = transfer(list_get(list), ptr)
-        
-		if (ptr%p%n == k) then
-			call list_remove_node(list)
-			exit
-		endif
-
-        list => list_next(list)
+    p => list
+    nullify(q)
+    
+    do while (associated(p))
+		ptr = transfer(list_get(p), ptr)
+		if (ptr%p%n == k) exit
+        q => p
+        p => list_next(p)
     end do
+
+    if (.not. associated(p)) then 
+      print*, 'Cannot find node has key ', k
+      return
+    endif
+    
+    if (associated(q)) call list_remove_node(p, q)
   end subroutine
 
 end module mod_data

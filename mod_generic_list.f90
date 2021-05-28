@@ -129,23 +129,16 @@ contains
     list_next => self%next
   end function list_next
 
-  ! Remove a node
-  subroutine list_remove_node( list )
-	type(list_node_t), pointer        :: list
+  ! Remove current node has key k given its previous node
+  subroutine list_remove_node( current, prev )
 
-    type(list_node_t), pointer        :: current => null()
-    type(list_node_t), pointer        :: prev => null()
-
-	current => list
-
-	prev => current
-	current => current%next
+    type(list_node_t), pointer        :: current 
+    type(list_node_t), pointer        :: prev 
 
 	if (.not. associated(current)) print*, 'Cannot find node to remove !!!'
 
 	if (associated(prev)) then
 		prev%next => current%next
-		prev%data = current%data
 
 		if (associated(current%data)) then
 			deallocate(current%data)
