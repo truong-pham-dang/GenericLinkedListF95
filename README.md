@@ -5,9 +5,11 @@ Why is it called a generic linked list?
 
 Because it is similar to template in C++ and some sorts of Generics in Java. For instance in Java we can define a list of String, a list of some derived types eg.
 
+```
 List<String> names;
   
 List<Cells> finiteVolumeCells;
+```
   
 To achieve this in Fortran, one needs some work arounds. This is the reason why we have this generic linked list. The original paper discussing it is [1]. The example code that the author provided was not enough for Fortran programmers so that they can use it without adding some utilities. So yet another generic linked list by me, which is basically a clone of [1], but with more tools, and more examples of how to using them. 
 
