@@ -1,7 +1,7 @@
 module mod_data
   use mod_generic_list, only: list_get, list_next, list_node_t, &
                               list_remove_node, singly_linked_list_t, &
-                              list_put, list_data
+                              list_put, list_data, list_swap
   implicit none
 
   private
@@ -77,7 +77,7 @@ module mod_data
 
     p => list%head
     nullify(q)
-    
+
     do while (associated(p))
 		ptr = transfer(list_get(p), ptr)
 		if (ptr%p%n == k) exit
@@ -85,20 +85,20 @@ module mod_data
         p => list_next(p)
     end do
 
-    if (.not. associated(p)) then 
+    if (.not. associated(p)) then
       print*, 'Cannot find node has key ', k
       return
     endif
-    
+
     if (associated(q)) call list_remove_node(p, q)
   end subroutine
 
   SUBROUTINE list_selection_sort(list)
       ! Selection sort algorithm on linked list by manipulating data field
       IMPLICIT NONE
-      TYPE (singly_linked_list_t) :: list
-      TYPE (list_node_t), POINTER :: p, q, min
-      type(data_int_ptr)          :: ptr, min_ptr
+      TYPE (singly_linked_list_t)    :: list
+      TYPE (list_node_t), POINTER    :: p, q, min
+      type(data_int_ptr)             :: ptr, min_ptr
 
       p => list%head
 
@@ -115,8 +115,11 @@ module mod_data
               q => list_next(q)
           ENDDO
 
-          CALL list_put(min, transfer(ptr, list_data))
-          CALL list_put(q, transfer(min_ptr, list_data))
+
+
+!          CALL list_put(min, data)
+!          CALL list_put(q, min_data)
+          CALL list_swap(min, q)
           p => list_next(p)
       ENDDO
   END SUBROUTINE
