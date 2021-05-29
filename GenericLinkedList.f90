@@ -16,14 +16,13 @@
 
 	program GenericLinkedList
 
-	use mod_generic_list
+	use mod_generic_list, only: singly_linked_list_t, list_data, list_delete, &
+                                list_create_head_node, list_insert_head
     use mod_data
 
     implicit none
 
     type(singly_linked_list_t) :: list
-	type(list_node_t), pointer :: list_tranverser => null()
-	type(list_node_t), pointer :: elem => null()
     type(data_int_ptr)         :: ptr
 
     integer :: i, k
@@ -33,13 +32,10 @@
     do i = 1, 5
 		ptr = data_int_ptr_constructor(i)
 
-        if (i == 1) elem => list%head
-        if (.not.associated(elem)) then
+        if (i == 1) then
 			call list_create_head_node(list, transfer(ptr,list_data))
-            elem => list%tail
         else
-            call list_insert_after(list, elem, transfer(ptr,list_data))
-            elem => list%tail
+            call list_insert_head(list, transfer(ptr,list_data))
         endif
     enddo
 
