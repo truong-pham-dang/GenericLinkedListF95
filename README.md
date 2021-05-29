@@ -25,9 +25,10 @@ References:
 
 [2] Tran Hanh Nhi, Duong Anh Duc - Introduction to data structures and algorithms (textbook in HCMUS's library, 2003).
 
-BUG FIXES:
+HISTORY:
 
-- A bug in subroutine list_remove_node.
+28/05/2021: A bug in subroutine list_remove_node has been fixed.
+29/05/2021: Clearer interfaces has been established. We now have pointers to head and tail of the generic linked list which is similar to a usual singly linked list [2]. Management on head and tail of the linked list is pretty easy and we can implement sorting algorithms on this generic linked list.
 
 TO-DO list:
 
