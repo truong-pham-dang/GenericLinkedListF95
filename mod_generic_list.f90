@@ -30,8 +30,9 @@ module mod_generic_list
   implicit none
 
   private
-  public :: list_node_t, list_data
-  public :: list_init, list_free
+  public :: list_node_t, singly_linked_list_t, list_data
+  public :: list_create_head_node, list_delete
+  public :: list_insert_after
   public :: list_insert, list_put, list_get, list_next
   public :: list_remove_node
 
@@ -45,7 +46,26 @@ module mod_generic_list
      type(list_node_t), pointer :: next => null()
   end type list_node_t
 
+  ! Singly linked list derived type
+  type :: singly_linked_list_t
+      type(list_node_t), pointer :: head => null()
+      type(list_node_t), pointer :: tail => null()
+  end type singly_linked_list_t
+
+  interface list_delete
+      module procedure list_free_singly_linked_list
+  end interface list_delete
+
 contains
+
+    ! Initialize a singly linked list by create a head node and optionally store the provided DATA.
+    subroutine list_create_head_node(list, data)
+        implicit none
+        type(singly_linked_list_t) :: list
+        integer, dimension(:), intent(in), optional :: data
+
+        call list_init(list%head, data)
+    end subroutine list_create_head_node
 
   ! Initialize a head node SELF and optionally store the provided DATA.
   subroutine list_init(self, data)
@@ -62,6 +82,16 @@ contains
        nullify(self%data)
     end if
   end subroutine list_init
+
+    ! Free the entire singly linked list
+    subroutine list_free_singly_linked_list(list)
+        implicit none
+        type(singly_linked_list_t) :: list
+        type(list_node_t), pointer :: p
+
+        p => list%head
+        call list_free(p)
+    end subroutine list_free_singly_linked_list
 
   ! Free the entire list and all data, beginning at SELF
   subroutine list_free(self)
@@ -82,6 +112,22 @@ contains
     end do
 
   end subroutine list_free
+
+    ! Insert to singly linked list a list node after node q containing DATA (optional)
+    subroutine list_insert_after(l, q, data)
+        implicit none
+        type(singly_linked_list_t) :: l
+        type(list_node_t), pointer :: q, new_ele
+        integer, dimension(:), intent(in), optional :: data
+
+        if (.not. associated(q)) then
+            call list_insert(q, data)
+
+            if (associated(q, l%tail)) then
+                l%tail => q%next
+            end if
+        end if
+    end subroutine list_insert_after
 
   ! Insert a list node after SELF containing DATA (optional)
   subroutine list_insert(self, data)
