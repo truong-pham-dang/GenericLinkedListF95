@@ -32,7 +32,7 @@ module mod_generic_list
   private
   public :: list_node_t, singly_linked_list_t, list_data
   public :: list_create_head_node, list_delete
-  public :: list_insert_head
+  public :: list_insert_head, list_swap
   public :: list_insert, list_put, list_get, list_next
   public :: list_remove_node
 
@@ -177,6 +177,19 @@ contains
     end if
     self%data = data
   end subroutine list_put
+
+    ! Swap DATA in list nodes p and q
+    subroutine list_swap(p, q)
+        type(list_node_t), pointer :: p, q
+        integer, dimension(:), pointer :: data
+
+        if (.not. associated(p)) return
+        if (.not. associated(q)) return
+        
+        data => p%data
+        p%data => q%data
+        q%data => data
+    end subroutine list_swap
 
   ! Return the DATA stored in the node SELF
   function list_get(self) result(data)
