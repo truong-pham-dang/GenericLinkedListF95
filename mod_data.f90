@@ -111,11 +111,12 @@ module mod_data
               ptr = transfer(list_get(q), ptr)
               IF (ptr%p%n < min_ptr%p%n) THEN
                   min => q
+                  min_ptr = transfer(list_get(min), min_ptr)
               ENDIF
               q => list_next(q)
           ENDDO
 
-          CALL list_swap(min, q)
+          CALL list_swap(min, p)
           p => list_next(p)
       ENDDO
   END SUBROUTINE

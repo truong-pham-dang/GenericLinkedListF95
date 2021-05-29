@@ -183,9 +183,12 @@ contains
         type(list_node_t), pointer :: p, q
         integer, dimension(:), pointer :: data
 
-        data => list_get(p)
-        p%data => list_get(q)
-        q%data = data
+        if (.not. associated(p)) return
+        if (.not. associated(q)) return
+        
+        data => p%data
+        p%data => q%data
+        q%data => data
     end subroutine list_swap
 
   ! Return the DATA stored in the node SELF

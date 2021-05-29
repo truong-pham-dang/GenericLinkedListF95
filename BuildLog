@@ -1,0 +1,4 @@
+FTN95.EXE "C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_generic_list.f90" /NO_BANNER /VS7 /DELETE_OBJ_ON_ERROR /ERROR_NUMBERS /UNLIMITED_ERRORS /CHECKMATE /FPP /CFPP /BINARY "CheckMate\Win32\mod_generic_list.obj" 
+FTN95.EXE "C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_data.f90" /NO_BANNER /VS7 /DELETE_OBJ_ON_ERROR /ERROR_NUMBERS /UNLIMITED_ERRORS /CHECKMATE /FPP /CFPP /BINARY "CheckMate\Win32\mod_data.obj" 
+FTN95.EXE "C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\GenericLinkedList.f90" /NO_BANNER /VS7 /DELETE_OBJ_ON_ERROR /ERROR_NUMBERS /UNLIMITED_ERRORS /CHECKMATE /FPP /CFPP /BINARY "CheckMate\Win32\GenericLinkedList.obj" 
+slink.exe -OUT:"CheckMate\Win32\GenericLinkedList.exe" @"C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\link.lst" 

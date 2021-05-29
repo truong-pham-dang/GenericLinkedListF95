@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: GenericLinkedList - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\HP\AppData\Local\Temp\RSP7591.tmp" with contents
+[
+/check:bounds /compile_only /dbglibs /debug:full /nologo /traceback /warn:argument_checking /warn:nofileopt /module:"Debug/" /object:"Debug/" /pdbfile:"Debug/DF60.PDB" 
+"C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_generic_list.f90"
+"C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_data.f90"
+"C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\GenericLinkedList.f90"
+]
+Creating temporary file "C:\Users\HP\AppData\Local\Temp\RSP7592.tmp" with contents
+[
+kernel32.lib /nologo /subsystem:console /incremental:no /pdb:"Debug/GenericLinkedList.pdb" /debug /machine:I386 /out:"Debug/GenericLinkedList.exe" /pdbtype:sept 
+".\Debug\GenericLinkedList.obj"
+".\Debug\mod_data.obj"
+".\Debug\mod_generic_list.obj"
+]
+Creating command line "link.exe @C:\Users\HP\AppData\Local\Temp\RSP7592.tmp"
+<h3>Output Window</h3>
+Compiling Fortran...
+C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_generic_list.f90
+C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\mod_data.f90
+C:\Users\HP\Downloads\FORTRAN CODES\CVF\GenericLinkedList\GenericLinkedListF95\GenericLinkedList.f90
+Linking...
+
+
+
+<h3>Results</h3>
+GenericLinkedList.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
