@@ -115,10 +115,6 @@ module mod_data
               q => list_next(q)
           ENDDO
 
-
-
-!          CALL list_put(min, data)
-!          CALL list_put(q, min_data)
           CALL list_swap(min, q)
           p => list_next(p)
       ENDDO
