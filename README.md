@@ -29,7 +29,9 @@ HISTORY:
 
 28/05/2021: A bug in subroutine list_remove_node has been fixed.
 
-29/05/2021: Clearer interfaces has been established. We now have pointers to head and tail of the generic linked list which is similar to a usual singly linked list [2]. Management on head and tail of the linked list is pretty easy and we can implement sorting algorithms on this generic linked list.
+29/05/2021: 
+ + Clearer interfaces has been established. We now have pointers to head and tail of the generic linked list which is similar to a usual singly linked list [2]. Management on head and tail of the linked list is pretty easy and we can implement sorting algorithms on this generic linked list.
+ + Implementation for selection sort on the data_int linked list.
 
 TO-DO list:
 
