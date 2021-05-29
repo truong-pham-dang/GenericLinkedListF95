@@ -1,5 +1,5 @@
 module mod_data
-  use mod_generic_list, only: list_get, list_next, list_node_t, list_remove_node
+  use mod_generic_list, only: list_get, list_next, list_node_t, list_remove_node, singly_linked_list_t
   implicit none
 
   private
@@ -44,25 +44,27 @@ module mod_data
   ! Helper method print
   subroutine data_int_ptr_print_list(list)
     implicit none
-    type(list_node_t), pointer :: list
+    type(singly_linked_list_t) :: list
+    type(list_node_t), pointer :: p
     type(data_int_ptr)         :: ptr
 
-    do while (associated(list))
-		ptr = transfer(list_get(list), ptr)
+    p => list%head
+    do while (associated(p))
+		ptr = transfer(list_get(p), ptr)
         print*, ptr%p%n
-        list => list_next(list)
+        p => list_next(p)
     end do
   end subroutine
 
   ! Remove node has value k
   subroutine data_int_ptr_remove_node(list, k)
     implicit none
-    type(list_node_t), pointer :: list
+    type(singly_linked_list_t) :: list
     type(list_node_t), pointer :: p, q
     type(data_int_ptr)         :: ptr
 	integer, intent(in)        :: k
 
-    p => list
+    p => list%head
     nullify(q)
     
     do while (associated(p))
