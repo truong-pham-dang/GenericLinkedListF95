@@ -14,7 +14,7 @@
 !
 !****************************************************************************
 
-	program GenericLinkedList
+program GenericLinkedList
 
 	use mod_generic_list, only: singly_linked_list_t, list_data, list_delete, &
                                 list_create_head_node, list_insert_head
@@ -33,9 +33,9 @@
 		ptr = data_int_ptr_constructor(i)
 
         if (i == 1) then
-			call list_create_head_node(list, transfer(ptr,list_data))
+			call list_create_head_node(list, transfer(ptr, list_data))
         else
-            call list_insert_head(list, transfer(ptr,list_data))
+            call list_insert_head(list, transfer(ptr, list_data))
         endif
     enddo
 
@@ -55,5 +55,45 @@
     ! Free the list
     call list_delete(list)
 
-	end program GenericLinkedList
+    ! Create another list
+    ptr = data_int_ptr_constructor(10)
+    call list_create_head_node(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(8)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(6)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(1)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(5)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(2)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(9)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(4)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(7)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    ptr = data_int_ptr_constructor(3)
+    call list_insert_head(list, transfer(ptr, list_data))
+
+    print*,'********************************************'
+    print*,'Another linked list:'
+    call data_int_ptr_print(list)
+
+    call data_int_list_selection_sort(list)
+    print*,'********************************************'
+    print*,'After sorting:'
+    call data_int_ptr_print(list)
+
+end program GenericLinkedList
 
