@@ -1,5 +1,5 @@
 # GenericLinkedListF95
-Singly linked list which is strictly conformant to Fortran 95 standard. In fact this repo is a refactoring of https://github.com/truongd8593/GenericLinkedList, where I mixed Fortran 2003 and Fortran 95 up.
+Singly linked list which is strictly conformant to Fortran 95 standard. In fact this repo is a refactoring of [GenericLinkedList](https://github.com/truongd8593/GenericLinkedList), where I mixed Fortran 2003 and Fortran 95 up.
 
 Why is it called a generic linked list?
 
@@ -11,7 +11,7 @@ List<String> names;
 List<Cells> finiteVolumeCells;
 ```
   
-To achieve this in Fortran, one needs some work arounds. This is the reason why we have this generic linked list. The original paper discussing it is [1]. The example code that the author provided was not enough for Fortran programmers so that they can use it without adding some utilities. So yet another generic linked list by me, which is basically a clone of [1], but with more tools, and more examples of how to using them. 
+To achieve this in Fortran 95, one needs some work arounds. This is the reason why we have this generic linked list. The original paper discussing it is [1]. The example code that the author provided was not enough for Fortran programmers so that they can use it without adding some utilities. So yet another generic linked list by me, which is basically a clone of [1], but with more tools, and more examples of how to using them. 
 
 The code has been tested in following IDEs:
 
@@ -36,3 +36,7 @@ HISTORY:
 TO-DO list:
 
 - Add more utilities for generic linked list.
+
+LESSONS LEARNED:
+
+It's really cumbersome when trying to achieve generic programming in Fortran 95. One should consider switch to other programming languages eg. C++, Java etc. Nevertheless, by upgrading to Fortran 2003, generic programming would be easier to some extent.
