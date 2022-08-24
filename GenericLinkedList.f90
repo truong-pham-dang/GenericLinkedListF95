@@ -17,7 +17,7 @@
 program GenericLinkedList
 
 	use mod_generic_list, only: singly_linked_list_t, list_data, list_delete, &
-                                list_create_head_node, list_prepend
+                                list_prepend, list_append
     use mod_data
 
     implicit none
@@ -27,20 +27,13 @@ program GenericLinkedList
 
     integer :: i, k
 
-
-
     do i = 1, 5
 		ptr = data_int_ptr_constructor(i)
-
-        if (i == 1) then
-			call list_create_head_node(list, transfer(ptr, list_data))
-        else
-            call list_prepend(list, transfer(ptr, list_data))
-        endif
+        call list_prepend(list, transfer(ptr, list_data))
     enddo
 
 	print*,'********************************************'
-    print*,'Linked list:'
+    print*,'Linked list insert using prepend:'
     call data_int_ptr_print(list)
 
     ! Remove node which has data = 4 in the list
@@ -55,9 +48,21 @@ program GenericLinkedList
     ! Free the list
     call list_delete(list)
 
+	! Create another list using append
+	do i = 1, 5
+		ptr = data_int_ptr_constructor(i)
+        call list_append(list, transfer(ptr, list_data))
+    enddo
+
+	print*,'********************************************'
+    print*,'Linked list insert using append:'
+    call data_int_ptr_print(list)
+	! Free the list
+    call list_delete(list)
+
     ! Create another list
     ptr = data_int_ptr_constructor(10)
-    call list_create_head_node(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(8)
     call list_prepend(list, transfer(ptr, list_data))

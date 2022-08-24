@@ -31,8 +31,8 @@ module mod_generic_list
 
   private
   public :: list_node_t, singly_linked_list_t, list_data
-  public :: list_create_head_node, list_delete
-  public :: list_prepend, list_swap
+  public :: list_delete
+  public :: list_prepend, list_append, list_swap
   public :: list_insert, list_put, list_get, list_next
   public :: list_remove_node
 
@@ -58,31 +58,38 @@ module mod_generic_list
 
 contains
 
-    ! Initialize a singly linked list by create a head node and optionally store the provided DATA.
-    subroutine list_create_head_node(list, data)
-        implicit none
-        type(singly_linked_list_t) :: list
-        integer, dimension(:), intent(in), optional :: data
-
-        call list_init(list%head, data)
-    end subroutine list_create_head_node
-
     subroutine list_prepend(list, data)
         implicit none
         type(singly_linked_list_t) :: list
         type(list_node_t), pointer :: new_ele
         integer, dimension(:), intent(in), optional :: data
 
-        call list_init(new_ele, data)
-
         if (.not. associated(list%head)) then
-            list%head => new_ele
-            list%tail => list%head
+            call list_init(list%head, data)
+			list%tail => list%head
         else
+			call list_init(new_ele, data)
             new_ele%next => list%head
             list%head => new_ele
         end if
     end subroutine list_prepend
+
+	subroutine list_append(list, data)
+		implicit none
+		type(singly_linked_list_t)   :: list
+		type(list_node_t), pointer   :: new_ele
+		integer, dimension(:), intent(in), optional :: data
+
+		if (.not. associated(list%head)) then
+			call list_init(list%head, data)
+            list%tail => list%head
+		else
+			call list_init(new_ele, data)
+			list%tail%next => new_ele
+			list%tail => new_ele
+		endif
+			
+	end subroutine
 
   ! Initialize a head node SELF and optionally store the provided DATA.
   subroutine list_init(self, data)
@@ -108,6 +115,8 @@ contains
 
         p => list%head
         call list_free(p)
+		nullify(list%tail)
+		nullify(list%head)
     end subroutine list_free_singly_linked_list
 
   ! Free the entire list and all data, beginning at SELF
