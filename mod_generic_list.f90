@@ -32,7 +32,7 @@ module mod_generic_list
   private
   public :: list_node_t, singly_linked_list_t, list_data
   public :: list_create_head_node, list_delete
-  public :: list_insert_head, list_swap
+  public :: list_prepend, list_swap
   public :: list_insert, list_put, list_get, list_next
   public :: list_remove_node
 
@@ -67,7 +67,7 @@ contains
         call list_init(list%head, data)
     end subroutine list_create_head_node
 
-    subroutine list_insert_head(list, data)
+    subroutine list_prepend(list, data)
         implicit none
         type(singly_linked_list_t) :: list
         type(list_node_t), pointer :: new_ele
@@ -82,7 +82,7 @@ contains
             new_ele%next => list%head
             list%head => new_ele
         end if
-    end subroutine list_insert_head
+    end subroutine list_prepend
 
   ! Initialize a head node SELF and optionally store the provided DATA.
   subroutine list_init(self, data)

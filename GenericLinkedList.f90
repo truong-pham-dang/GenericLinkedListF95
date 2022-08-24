@@ -17,7 +17,7 @@
 program GenericLinkedList
 
 	use mod_generic_list, only: singly_linked_list_t, list_data, list_delete, &
-                                list_create_head_node, list_insert_head
+                                list_create_head_node, list_prepend
     use mod_data
 
     implicit none
@@ -35,7 +35,7 @@ program GenericLinkedList
         if (i == 1) then
 			call list_create_head_node(list, transfer(ptr, list_data))
         else
-            call list_insert_head(list, transfer(ptr, list_data))
+            call list_prepend(list, transfer(ptr, list_data))
         endif
     enddo
 
@@ -60,31 +60,31 @@ program GenericLinkedList
     call list_create_head_node(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(8)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(6)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(1)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(5)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(2)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(9)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(4)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(7)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     ptr = data_int_ptr_constructor(3)
-    call list_insert_head(list, transfer(ptr, list_data))
+    call list_prepend(list, transfer(ptr, list_data))
 
     print*,'********************************************'
     print*,'Another linked list:'
