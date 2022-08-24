@@ -55,16 +55,20 @@ module mod_data
     type(list_node_t), pointer :: p
     type(data_int_ptr)         :: ptr
 
-    print*, '['
+    write(*, '(a)', advance = 'no') '['
 
     p => list%head
     do while (associated(p))
 		ptr = transfer(list_get(p), ptr)
-        print*, ptr%p%n, ','
+		if (.not. associated(list_next(p))) then
+			write(*, '(1x, i0, a)', advance = 'no') ptr%p%n, ']'
+		else
+			write(*, '(1x, i0, a)', advance = 'no') ptr%p%n, ','
+		endif
         p => list_next(p)
     end do
 
-    print*, ']'
+	write(*, *)
   end subroutine
 
   ! Remove node has value k
